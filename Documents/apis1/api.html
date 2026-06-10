@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJK - Registro de Hechicería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="franja-negra">
+        <!-- Buscador Superior Grande y Semicircular -->
+        <div class="buscador-semicircular" id="caja-superior">
+            <input type="text" id="searchTop" placeholder="Invocación de Hechicero...">
+            <button onclick="buscarAJAX()">INVOCAR</button>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        <!-- Laterales: Imagen completa, alargada y estilizada -->
+        <aside class="lateral-estilizado" id="gojo-side"></aside>
+
+        <section class="centro-negro">
+            <!-- Rectángulo Azul Marino: Secciones de lado a lado pegadas -->
+            <nav class="secciones-jjk-horizontal">
+                <div class="bloque-seccion" onclick="mostrarSeccion('sorcerers')">
+                    <h2>SORCERERS</h2>
+                </div>
+                <div class="bloque-seccion" onclick="mostrarSeccion('spirits')">
+                    <h2>SPIRITS</h2>
+                </div>
+                <div class="bloque-seccion" onclick="mostrarSeccion('users')">
+                    <h2>USERS</h2>
+                </div>
+            </nav>
+
+            <!-- Área de Visualización de Tarjetas Blancas -->
+            <div id="contenedor-tarjetas" class="grid-tarjetas"></div>
+        </section>
+
+        <aside class="lateral-estilizado" id="geto-side"></aside>
+    </main>
+
+    <footer class="franja-negra"></footer> <!-- Solo fondo negro abajo -->
+
+    <script src="api.js"></script>
+</body>
+</html>

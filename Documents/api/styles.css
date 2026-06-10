@@ -1,0 +1,237 @@
+:root {
+    --miku-cyan: #00e5ff;       /* Celeste vibrante característico */
+    --miku-cyan-dark: #00b2c8;
+    --dark-panel: #0b1528;      /* Azul oscuro para el panel de info */
+    --text-light: #ffffff;
+    --text-dark: #1e293b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--miku-cyan);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Contenedor Principal Adaptable (Grid de 3 columnas) */
+.app-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 320px;
+    width: 100%;
+    max-width: 1200px;
+    height: 85vh;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* LADO IZQUIERDO: Buscador */
+.sidebar-search {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: none;
+    background: #ffffff; /* Buscador blanco solicitado */
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    outline: none;
+}
+
+.song-list {
+    list-style: none;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.song-item {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.song-item:hover, .song-item.active {
+    background: #ffffff;
+    color: var(--miku-cyan-dark);
+    transform: translateX(5px);
+}
+
+/* CENTRO: Micrófono */
+.player-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.mic-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+.mic-icon {
+    font-size: 4.5rem;
+}
+
+/* Animación de ondas cuando se reproduce */
+.mic-container.playing .wave-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite linear;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.controls {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    align-items: center;
+}
+
+.control-btn {
+    background: #ffffff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    background: var(--dark-panel);
+    color: white;
+}
+
+.play-main {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+}
+
+.track-status {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* LADO DERECHO: Portada y Panel Oscuro */
+.sidebar-info {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cover-art {
+    height: 45%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cover-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dark-info-panel {
+    background-color: var(--dark-panel); /* Panel color oscuro azul */
+    color: var(--text-light);
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dark-info-panel h2 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.4rem;
+    color: var(--miku-cyan);
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.8rem;
+}
+
+.info-item strong {
+    color: var(--miku-cyan);
+}
+
+.info-desc {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* --- RESPONSIVE DESIGN (Adaptabilidad a Móviles) --- */
+@media (max-width: 900px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: none;
+    }
+    body {
+        padding: 0;
+    }
+    .sidebar-search, .sidebar-info {
+        border: none;
+    }
+    .cover-art {
+        height: 250px;
+    }
+}

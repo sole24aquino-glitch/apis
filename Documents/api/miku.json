@@ -1,0 +1,124 @@
+{
+  "Overview": [
+    {
+      "titulo": "Bienvenido al MikuVerse",
+      "detalles": "Esta interfaz consume datos dinámicos mediante AJAX. Explora las secciones laterales para conocer el ecosistema de la idol virtual número uno de Japón.",
+      "dato_clave": "Desarrollador: Crypton Future Media"
+    }
+  ],
+  "Getting started": [
+    {
+      "titulo": "Guía de Inicio Rápido",
+      "detalles": "Para integrar la voz de Miku en tus proyectos musicales, necesitas el software Piapro Studio o Vocaloid 6 Vocal Editor. Configura el tempo y la lírica en español.",
+      "dato_clave": "Requisito: Interfaz MIDI"
+    }
+  ],
+  "Building with AI": [
+    {
+      "titulo": "Sintetizadores de Nueva Generación",
+      "detalles": "Modelos basados en raíces neuronales que analizan la vibración humana para recrear respiraciones, transiciones de fonemas naturales y efectos de canto avanzados.",
+      "dato_clave": "Tecnología: Vocaloid AI / NT"
+    }
+  ],
+  "Albums": [
+    {
+      "titulo": "Evils Theater (2009)",
+      "detalles": "Álbum clásico producido por mothy que relata la 'Saga del Mal' protagonizada por los gemelos Kagamine.",
+      "dato_clave": "Éxito: Elige, Hija del Mal"
+    },
+    {
+      "titulo": "Supercell (2009)",
+      "detalles": "Uno de los álbumes más influyentes de la historia, compuesto por ryo. Redefinió el género pop digital.",
+      "dato_clave": "Éxito: Melt / World is Mine"
+    }
+  ],
+  "Artists": [
+    {
+      "titulo": "Hatsune Miku (CV01)",
+      "detalles": "Voz base alegre e hiperactiva, ideal para J-Pop y música electrónica rápida.",
+      "dato_clave": "Color: #39C5BB (Turquesa)"
+    },
+    {
+      "titulo": "Megurine Luka (CV03)",
+      "detalles": "Voz madura, melancólica y bilingüe nativa (Japonés/Inglés) ideal para Jazz y Pop suave.",
+      "dato_clave": "Color: #E29099 (Rosa Palo)"
+    }
+  ],
+  "Audiobooks": [
+    {
+      "titulo": "Novelas Oficiales: Story of Evil",
+      "detalles": "Audiolibros y novelas ligeras basadas en las canciones más famosas de la franquicia, adaptadas para fans.",
+      "dato_clave": "Formato: Físico y Digital"
+    }
+  ],
+  "Categories": [
+    {
+      "titulo": "Clasificación de Software",
+      "detalles": "Los bancos de voz se dividen por versiones motor: V2, V3, V4X, y las nuevas versiones NT (New Type).",
+      "dato_clave": "Estado: Activo"
+    }
+  ],
+  "Chapters": [
+    {
+      "titulo": "Arcos de Historia Musical",
+      "detalles": "Canciones divididas por capítulos narrativos, como la saga de 'Kagerou Project' o 'Chronicle of Seven Crimes'.",
+      "dato_clave": "Género: Narrativo"
+    }
+  ],
+  "Episodes": [
+    {
+      "titulo": "Miku Expo 2024",
+      "detalles": "Gira internacional que lleva los conciertos holográficos a pantallas LED de alta definición en todo el mundo.",
+      "dato_clave": "Sede: Global"
+    }
+  ],
+  "Genres": [
+    {
+      "titulo": "ElectroSynth / J-Rock",
+      "detalles": "Los géneros más populares dominados por sintetizadores pesados, guitarras distorsionadas y baterías veloces.",
+      "dato_clave": "BPM Promedio: 140 - 180"
+    }
+  ],
+  "Library": [
+    {
+      "titulo": "Biblioteca de Fonemas",
+      "detalles": "Diccionario completo de sonidos en español (A, E, I, O, U y combinaciones consonánticas) optimizado.",
+      "dato_clave": "Formato: .vsqx / .ppsf"
+    }
+  ],
+  "Player": [
+    {
+      "titulo": "Miku Widget Player",
+      "detalles": "Módulo interactivo simulado para reproducir previsualizaciones de audio de 30 segundos directo en el navegador.",
+      "dato_clave": "Estado: En Línea"
+    }
+  ],
+  "Playlists": [
+    {
+      "titulo": "Clásicos Atemporales",
+      "detalles": "Lista de reproducción sugerida con 'Ievan Polkka', 'Senbonzakura', 'PoPiPo' y 'Odds & Ends'.",
+      "dato_clave": "Duración: 45 min"
+    }
+  ],
+  "Search": [
+    {
+      "titulo": "Motor de Búsqueda Interno",
+      "detalles": "Indexación AJAX en tiempo real capaz de filtrar miles de canciones registradas en la base de datos comunitaria.",
+      "dato_clave": "Velocidad: < 10ms"
+    }
+  ],
+  "Shows": [
+    {
+      "titulo": "Magical Mirai",
+      "detalles": "El evento anual más grande celebrado en Japón (Tokio/Osaka) que combina exhibiciones de arte y conciertos masivos.",
+      "dato_clave": "Asistencia: +50,000"
+    }
+  ],
+  "Tracks": [
+    {
+      "titulo": "Senbonzakura (Kurutu-P)",
+      "detalles": "Una obra maestra que mezcla rock moderno con instrumentos tradicionales japoneses. Himno de la cultura vocal.",
+      "dato_clave": "Visitas: +40M"
+    }
+  ]
+}

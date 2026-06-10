@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miku_OS // Cyber Dashboard</title>
+    <style>
+        /* 1. ESTILOS Y COLORES MIKU */
+        :root {
+            --miku-cyan: #00ffcc;
+            --miku-pink: #ff007f;
+            --bg: #0a0c10;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 2. DISEÑO RESPONSIVO (Layout Asimétrico) */
+        .container {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Panel Principal (Izquierda) */
+        .main-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+        }
+
+        .cover-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--miku-cyan);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cover-wrapper:hover {
+            box-shadow: 0 0 25px var(--miku-cyan);
+            transform: scale(1.02);
+        }
+
+        #miku-art {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .play-overlay {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em; color: var(--miku-cyan);
+            opacity: 0; transition: 0.3s;
+        }
+
+        .cover-wrapper:hover .play-overlay { opacity: 1; }
+
+        /* Panel Lateral (Derecha) */
+        .side-panel { display: flex; flex-direction: column; gap: 15px; }
+
+        .info-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--miku-pink);
+        }
+
+        /* 3. BOTONES Y UX */
+        .grid-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        button {
+            background: transparent;
+            color: var(--miku-cyan);
+            border: 1px solid var(--miku-cyan);
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        button:hover { background: var(--miku-cyan); color: black; }
+
+        pre { font-size: 0.7em; color: var(--miku-cyan); overflow: hidden; }
+
+        @media (max-width: 800px) { .container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- SECCIÓN DE REPRODUCCIÓN -->
+        <div class="main-card">
+            <div style="color: var(--miku-cyan); font-size: 0.8em; margin-bottom: 10px;">► SISTEMA DE AUDIO ACTIVO</div>
+            <div class="cover-wrapper" onclick="toggleAudio()">
+                <img id="miku-art" src="" alt="Portada">
+                <div class="play-overlay">🎵</div>
+            </div>
+            <h2 id="song-title" style="margin: 20px 0 5px 0;">--</h2>
+            <p id="artist-name" style="color: var(--miku-pink); margin: 0;">Selecciona un productor</p>
+            <audio id="audio-player" src=""></audio>
+        </div>
+
+        <!-- SECCIÓN DE DATOS (AJAX SIMULADO) -->
+        <div class="side-panel">
+            <div class="info-card">
+                <div style="color: var(--miku-cyan); font-size: 0.7em;">DATOS_DEL_PRODUCTOR</div>
+                <p id="prod-desc">Cargando información técnica...</p>
+                <p id="prod-bpm">BPM: --</p>
+            </div>
+
+            <div class="info-card" style="border-color: var(--miku-cyan);">
+                <div style="color: var(--miku-pink); font-size: 0.7em;">API_RESPONSE_JSON</div>
+                <pre id="json-log">{ "status": "listening" }</pre>
+            </div>
+
+            <div class="grid-buttons">
+                <button onclick="loadProducer('ryo')">ryo</button>
+                <button onclick="loadProducer('deco')">DECO*27</button>
+                <button onclick="loadProducer('wowaka')">wowaka</button>
+                <button onclick="loadProducer('pinocchio')">PinocchioP</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BASE DE DATOS DE MIKU (Simulación de API de terceros)
+        const mikuData = {
+            'ryo': { 
+                name: "ryo (supercell)", track: "World is Mine", bpm: 165,
+                img: "https://m.media-amazon.com/images/I/718712O7N3L._AC_SL1500_.jpg",
+                audio: "https://www.myinstants.com/media/sounds/miku-melt.mp3" 
+            },
+            'deco': { 
+                name: "DECO*27", track: "Ghost Rule", bpm: 210,
+                img: "https://images.goodsmile.info/cgm/images/product/20160531/5713/39294/large/3321523f05118534b8296a60d032230a.jpg",
+                audio: "https://www.myinstants.com/media/sounds/miku-leek-spin.mp3" 
+            },
+            'wowaka': { 
+                name: "wowaka", track: "Rolling Girl", bpm: 204,
+                img: "https://pbs.twimg.com/media/D3V-v_EUwAALM0K.jpg",
+                audio: "https://www.myinstants.com/media/sounds/miku-rollin-girl.mp3" 
+            },
+            'pinocchio': { 
+                name: "PinocchioP", track: "God-ish", bpm: 150,
+                img: "https://m.media-amazon.com/images/I/71X8kC-1X5L._AC_SL1500_.jpg",
+                audio: "https://www.myinstants.com/media/sounds/miku-hatsune-vocaloid.mp3" 
+            }
+        };
+
+        // LÓGICA AJAX PARA CARGAR DATOS
+        function loadProducer(id) {
+            const data = mikuData[id];
+            const player = document.getElementById('audio-player');
+            
+            // Actualizar Interfaz
+            document.getElementById('miku-art').src = data.img;
+            document.getElementById('song-title').innerText = data.track;
+            document.getElementById('artist-name').innerText = data.name;
+            document.getElementById('prod-desc').innerText = "Productor: " + data.name;
+            document.getElementById('prod-bpm').innerText = "BPM: " + data.bpm;
+            
+            // Configurar Audio
+            player.src = data.audio;
+            player.pause(); // Resetear si estaba sonando
+
+            // Log de API
+            document.getElementById('json-log').innerText = JSON.stringify(data, null, 2);
+        }
+
+        // FUNCIÓN DEL REPRODUCTOR
+        function toggleAudio() {
+            const player = document.getElementById('audio-player');
+            if (player.paused) {
+                player.play();
+                document.querySelector('.cover-wrapper').style.borderColor = "var(--miku-pink)";
+            } else {
+                player.pause();
+                document.querySelector('.cover-wrapper').style.borderColor = "var(--miku-cyan)";
+            }
+        }
+
+        // Carga inicial
+        loadProducer('ryo');
+    </script>
+</body>
+</html>
